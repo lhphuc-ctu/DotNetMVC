@@ -9,5 +9,11 @@ namespace VNPayment
     public interface IVNPayPayment
     {
         public string CreatePaymentUrl(VnPayRequest vnPayRequest);
+
+        public void AddResponse(SortedList<String, String> responseData);
+
+        public string GetResponseData(string key);
+
+        public bool ValidateSignature(string inputHash);
     }
 }

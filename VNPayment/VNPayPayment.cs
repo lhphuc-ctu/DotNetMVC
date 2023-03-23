@@ -18,6 +18,7 @@ namespace VNPayment
         {
             _config = config;
         }
+        #region Request
 
         //Them du lieu vao Request
         public void AddRequestData(VnPayRequest vnPayRequest)
@@ -64,12 +65,36 @@ namespace VNPayment
             return baseUrl;
         }
 
+        #endregion
+
+        #region Response
+
+        //Them du lieu vao Response
+        public void AddResponse(SortedList<String, String> responseData)
+        {
+            _responseData = responseData;
+        }
+
         //Kiem tra chu ky dien tu
-        public bool ValidateSignature(string inputHash, string secretKey)
+        public bool ValidateSignature(string inputHash)
         {
             string rspRaw = GetResponseData();
-            string myChecksum = Utils.HmacSHA512(secretKey, rspRaw);
+            string myChecksum = Utils.HmacSHA512(_config.Vnp_HashSecret, rspRaw);
             return myChecksum.Equals(inputHash, StringComparison.InvariantCultureIgnoreCase);
+        }
+
+        //Lay du lieu theo gia tri
+        public string GetResponseData(string key)
+        {
+            string retValue;
+            if (_responseData.TryGetValue(key, out retValue))
+            {
+                return retValue;
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         //Lay du lieu tra ve
@@ -99,5 +124,7 @@ namespace VNPayment
             }
             return data.ToString();
         }
+
+        #endregion
     }
 }

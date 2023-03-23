@@ -1,0 +1,79 @@
+﻿@model DotNetMVC.ViewModel.PaymentViewModel
+
+@{
+    ViewData["Title"] = "PayReturn";
+}
+
+<h1>PayReturn</h1>
+
+<div>
+    <h4>PaymentViewModel</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.orderId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.orderId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vnpayTranId)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vnpayTranId)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vnp_ResponseCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vnp_ResponseCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vnp_TransactionStatus)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vnp_TransactionStatus)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vnp_SecureHash)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vnp_SecureHash)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.TerminalID)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.TerminalID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.vnp_Amount)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.vnp_Amount)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.bankCode)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.bankCode)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+        <dd class = "col-sm-10">
+            @if (Model.Status)
+            {
+                <p>Giao dịch thành công</p>
+            }
+            else
+            {
+                <p>Giao dịch thất bại. Lỗi @Model.vnp_ResponseCode</p>
+            }
+        </dd>
+    </dl>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>
